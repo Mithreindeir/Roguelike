@@ -8,8 +8,6 @@
 #include <math.h>
 #include <time.h>
 #include "astar.h"
-#include "enemy.h"
-#include "player.h"
 
 //#define DEBUG
 #define WALL '#'
@@ -39,7 +37,8 @@ struct game_object
 	int passive;
 	int ch;
 	void* update;
-	void * data;
+	void* destroy;
+	void* data;
 };
 
 struct game_map {
@@ -60,16 +59,11 @@ struct game_map {
 };
 
 typedef void (*game_object_update)(struct game_map * map, struct game_object*, int ch);
+typedef void (*game_object_free)(void * data);
 
 struct game_map * new_map(int w, int h);
-int add_obj(struct game_map * map, int x, int y, int ch, int id, game_object_update update);
+int add_obj(struct game_map * map, int x, int y, int ch, int id, game_object_update update, game_object_free destroy);
 void free_map(struct game_map * map);
-int random_max(int max);
-int fit_rect(struct game_map * map, int x, int y, int w, int h, int o);
-void fill_rect(struct game_map * map, int x, int y, int w, int h);
-int fill_deadends(struct game_map * map);
-void get_wall(struct game_map * map, int * x, int * y, int * t);
-void generate_map(struct game_map * map);
 int move_obj(struct game_map * map, struct game_object * obj, int y, int x);
 void update_objects(struct game_map * map, int ch);
 void interact(struct game_map * map, struct game_object * sobj, struct game_object * dobj);

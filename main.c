@@ -4,6 +4,8 @@
 #include "map.h"
 #include "fov.h"
 #include "player.h"
+#include "generate.h"
+
 
 #define DELAY 3500
 
@@ -71,7 +73,7 @@ void game_loop()
 	struct game_map * map = new_map(max_x-15, max_y);
 	map->offset = 15;
 	generate_map(map);
-	int pi = add_obj(map, map->w/2, map->h/2, '@', PLAYER, &player_update);
+	int pi = add_obj(map, map->w/2, map->h/2, '@', PLAYER, &player_update, (game_object_free)&destroy_player);
 	struct player *pd = init_player();
 	map->objects[pi]->data = pd;
 	//int end = add_obj(map, map->w/2, map->h/2, '^', &player_update);

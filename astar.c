@@ -74,7 +74,9 @@ void ns_remove(struct node_stack *ns, struct node * n)
 
 	if (idx == -1)
 		return;
-	struct node ** nodes = malloc(sizeof(struct node*) * (ns->num_nodes-1));
+	struct node ** nodes = NULL;
+	if ((ns->num_nodes-1) > 0)
+		nodes = malloc(sizeof(struct node*) * (ns->num_nodes-1));
 
 	int c = 0;
 	for (int i = 0; i < ns->num_nodes; i++) {

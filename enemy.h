@@ -17,5 +17,6 @@ struct enemy
 
 struct enemy * init_enemy();
 void enemy_update(struct game_map * map, struct game_object * obj, int ch);
+void destroy_enemy(struct enemy * e);
 
 #endif

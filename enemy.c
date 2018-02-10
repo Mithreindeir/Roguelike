@@ -1,6 +1,5 @@
 #include "enemy.h"
 
-
 struct enemy * init_enemy()
 {
 	struct enemy * e = malloc(sizeof(struct enemy));
@@ -10,6 +9,19 @@ struct enemy * init_enemy()
 	e->path = 0;
 	e->health = 10;
 	return e;
+}
+
+void destroy_enemy(struct enemy * e)
+{
+	if (!e) return;
+	if (e->ns) {	
+		for (int i = 0; i < e->ns->num_nodes; i++) {
+			free(e->ns->nodes[i]);
+		}
+
+		ns_destroy(e->ns);
+	}
+	free(e);
 }
 
 void enemy_update(struct game_map * map, struct game_object * obj, int ch)
@@ -39,7 +51,7 @@ void enemy_update(struct game_map * map, struct game_object * obj, int ch)
 	if (newa) {
 		int idx0 = map->objects[pidx]->x + map->objects[pidx]->y*map->w, idx1 = obj->x + obj->y*map->w;
 
-   		a_star(map->nodes[idx0], map->nodes[idx1], map, get_neighbors);
+   		a_star(map->nodes[idx0], map->nodes[idx1], map, (struct node_stack * (*)(void *, struct node *))get_neighbors);
 
  		struct node_stack * ns = ns_init();
 		struct node * next = map->nodes[idx1];
