@@ -5,6 +5,7 @@
 #include "player.h"
 #include "enemy.h"
 
-void interact(struct game_map * map, struct game_object * sobj, struct game_object * dobj);
+void interact(struct game_map *map, struct game_object *sobj,
+	      struct game_object *dobj);
 
 #endif

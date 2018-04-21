@@ -5,18 +5,17 @@
 #include "fov.h"
 #include "astar.h"
 
-struct enemy
-{
+struct enemy {
 	//Stand still and if player is seen pursue
 	int px, py;
 	int active;
-	struct node_stack * ns;
+	struct node_stack *ns;
 	int path;
 	int health;
 };
 
-struct enemy * init_enemy();
-void enemy_update(struct game_map * map, struct game_object * obj, int ch);
-void destroy_enemy(struct enemy * e);
+struct enemy *init_enemy();
+void enemy_update(struct game_map *map, struct game_object *obj, int ch);
+void destroy_enemy(struct enemy *e);
 
 #endif
