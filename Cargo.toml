@@ -1,0 +1,8 @@
+[package]
+name = "roguelike"
+version = "0.1.0"
+authors = ["Mithreindeir <mithreindeir@gmail.com>"]
+
+[dependencies]
+ncurses = "5.94.0"
+rand = "0.3.14"
