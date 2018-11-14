@@ -1,7 +1,7 @@
 # Roguelike
 Prototype for a ascii roguelike written in Rust with ncurses-rs. Featuring procedural generated maps, fov calculations, A* and more.
 
-![Screenshot](https://raw.githubusercontent.com/mithreindeir/roguelike/master/cap.png)
+![Screenshot](https://raw.githubusercontent.com/mithreindeir/roguelike/master/scrn.png)
 
 ## Building
 
